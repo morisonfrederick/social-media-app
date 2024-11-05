@@ -1,31 +1,23 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../features/auth/authSlice";
 
-const url = import.meta.env.VITE_APP_API_URL
-
-
 interface loginProps {
-  setLoggedIn:React.Dispatch<React.SetStateAction<boolean>>
+  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-
-export const Login:React.FC<loginProps> = ({setLoggedIn}) => {
-
-  
+export const Login: React.FC<loginProps> = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const dispatch = useDispatch()
-
-
+  const dispatch = useDispatch();
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -42,29 +34,28 @@ export const Login:React.FC<loginProps> = ({setLoggedIn}) => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:3000/login", { email, password });
+      const response = await axios.post("http://localhost:3000/login", {
+        email,
+        password,
+      });
       console.log(response);
       const token = response?.data?.token;
-      const user = response?.data?.user
-      console.log('loggin action ',typeof user,' ',user);
-      
+      const user = response?.data?.user;
+      console.log("loggin action ", typeof user, " ", user);
 
+      if (token) {
+        toast.success(response?.data?.message);
+        console.log("user response data from backend : ", response.data.user);
 
-      if(token){
-        toast.success(response?.data?.message)
-        console.log('user response data from backend : ',response.data.user);
-        
-        localStorage.setItem('authToken',token)
-        localStorage.setItem('user',JSON.stringify(user))
-        setLoggedIn(true)
-        dispatch(setCredentials({user,token}))
+        localStorage.setItem("authToken", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        setLoggedIn(true);
+        dispatch(setCredentials({ user, token }));
         navigate("/");
       }
-      
-
     } catch (error: any) {
-      console.log('error block :',error);
-      
+      console.log("error block :", error);
+
       if (error.response && error.response.data) {
         // Display the error message from the response if available
         toast.error(error.response.data || "Login failed. Please try again.");
@@ -82,7 +73,9 @@ export const Login:React.FC<loginProps> = ({setLoggedIn}) => {
   return (
     <div className="flex justify-center items-center h-screen p-4 bg-slate-800">
       <div className="sm:w-96 w-full p-6 border border-gray-800 rounded-lg shadow-md bg-slate-500">
-        <h2 className="text-2xl font-bold text-center text-white mb-6">Login</h2>
+        <h2 className="text-2xl font-bold text-center text-white mb-6">
+          Login
+        </h2>
         <form onSubmit={submitHandler}>
           <div className="mb-4">
             <input
@@ -107,9 +100,7 @@ export const Login:React.FC<loginProps> = ({setLoggedIn}) => {
             />
           </div>
           {error && (
-            <div className="text-red-500 text-sm mb-4 text-center">
-              {error}
-            </div>
+            <div className="text-red-500 text-sm mb-4 text-center">{error}</div>
           )}
           <div className="flex justify-center">
             <button
@@ -130,7 +121,6 @@ export const Login:React.FC<loginProps> = ({setLoggedIn}) => {
           </button>
         </div>
       </div>
-      <p onClick={()=>{toast.success('hello')}}>hello</p>
     </div>
   );
 };

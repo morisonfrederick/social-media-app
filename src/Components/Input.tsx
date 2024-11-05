@@ -1,13 +1,14 @@
-
-const Input = ({...props}) => {
+const Input = ({ ...props }) => {
   return (
     <div>
-        <input type={props.type} 
+      <input
+        type={props.type}
         name={props.name}
         placeholder={props.placeholder}
-        onChange={props.fun} />
+        onChange={props.fun}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;

@@ -44,8 +44,8 @@ function Navbar() {
         >
           Find
         </li>
-        <li 
-          onClick={() => navigation('/requests')}
+        <li
+          onClick={() => navigation("/requests")}
           className="p-2 border hover:border-pink-400 hover:rounded-2xl cursor-pointer"
         >
           Request
