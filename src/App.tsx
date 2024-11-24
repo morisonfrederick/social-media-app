@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import Find from "./Pages/Find";
 import FriendRequest from "./Pages/FriendRequest";
 import Admin from "./Pages/Admin";
+import Profile from "./Pages/Profile";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/find" element={<Find />} />
           <Route path="/requests" element={<FriendRequest />} />
           <Route path="admin" element={<Admin />} />
+          <Route path="profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>

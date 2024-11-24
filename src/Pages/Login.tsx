@@ -71,27 +71,30 @@ export const Login: React.FC<loginProps> = ({ setLoggedIn }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen p-4 bg-slate-800">
-      <div className="sm:w-96 w-full p-6 border border-gray-800 rounded-lg shadow-md bg-slate-500">
-        <h2 className="text-2xl font-bold text-center text-white mb-6">
-          Login
+    <div className="flex justify-center items-center h-screen p-4 ">
+      <div className="sm:w-96 w-full p-6  rounded-2xl shadow-md bg-slate-50">
+        <h2 className="text-3xl font-bold text-slate-500 text-center ">
+          Welcome Back !
         </h2>
+        <h1 className="text-center pb-4  text-slate-500">
+          Sign in to continue to Tiki
+        </h1>
         <form onSubmit={submitHandler}>
           <div className="mb-4">
             <input
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-sky-500"
-              type="email" // Changed to 'email' input type for better validation
+              type="email"
               name="email"
               placeholder="Enter email"
               value={email}
               onChange={inputHandler}
-              required // Adding required for form validation
+              required
             />
           </div>
           <div className="mb-4">
             <input
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-sky-500"
-              type="password" // Changed to 'password' input type for masking password
+              type="password"
               name="password"
               placeholder="Enter password"
               value={password}
@@ -104,21 +107,24 @@ export const Login: React.FC<loginProps> = ({ setLoggedIn }) => {
           )}
           <div className="flex justify-center">
             <button
-              className="w-full p-2 bg-sky-500 text-white rounded hover:bg-sky-600 transition duration-200"
+              className="w-full p-2 bg-[#5fb47b] text-white rounded hover:bg-[#00d8a9] transition duration-200"
               type="submit"
               disabled={loading} // Disable button during loading
             >
-              {loading ? "Submitting..." : "Submit"}
+              {loading ? "waiting ..." : "Log in"}
             </button>
           </div>
         </form>
-        <div className="mt-4 flex justify-center">
-          <button
-            className="w-full p-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-200"
-            onClick={handleSignup}
-          >
-            Sign Up
-          </button>
+        <div className="mt-4 justify-center">
+          <h1 className="text-center text-slate-500">
+            Don't have an account ?{" "}
+            <span
+              onClick={handleSignup}
+              className="font-bold text-[#5fb47b] hover:text-[#00d8a9] cursor-pointer"
+            >
+              Register
+            </span>
+          </h1>
         </div>
       </div>
     </div>

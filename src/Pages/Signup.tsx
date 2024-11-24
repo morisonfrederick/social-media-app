@@ -41,15 +41,18 @@ export const Signup = () => {
     }
   };
 
-  const handleSignup = () => {
+  const handleLogin = () => {
     navigate("/login");
   };
 
   return (
-    <div className="flex justify-center items-center h-screen p-4 bg-slate-800">
-      <div className="sm:w-96 w-full p-6 border border-gray-800 rounded-lg shadow-md bg-slate-500">
-        <h2 className="text-2xl font-bold text-center text-white mb-6">
-          Signup
+    <div className="flex justify-center items-center h-screen p-4 ">
+      <div className="sm:w-96 w-full p-6  rounded-lg shadow-md bg-slate-50">
+        <h2 className="text-2xl font-bold text-center text-slate-500">
+          Register Account
+        </h2>
+        <h2 className="text-slate-500 text-center p-4">
+          Get your free Tiki account now.
         </h2>
         <form onSubmit={submitHandler}>
           <div className="mb-4">
@@ -80,18 +83,21 @@ export const Signup = () => {
             />
           </div>
           <div className="flex justify-center">
-            <button className="w-full p-2 bg-sky-500 text-white rounded hover:bg-sky-600 transition duration-200">
+            <button className="w-full p-2 bg-[#5fb47b] text-white rounded hover:bg-[#00d8a9] transition duration-200">
               {loading ? "submitting" : "submit"}
             </button>
           </div>
         </form>
         <div className="mt-4 flex justify-center">
-          <button
-            className="w-full p-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-200"
-            onClick={handleSignup}
-          >
-            Login
-          </button>
+          <h1 className="text-slate-500">
+            Already have an account?{" "}
+            <span
+              onClick={handleLogin}
+              className="font-bold text-[#5fb47b] hover:text-[#00d8a9] cursor-pointer"
+            >
+              Login
+            </span>
+          </h1>
         </div>
       </div>
     </div>

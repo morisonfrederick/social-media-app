@@ -7,20 +7,47 @@ import { useNavigate } from "react-router-dom";
 interface HomeProps {
   loggedIn: boolean;
 }
+interface Ifriend {
+  name: string;
+}
 
 const Home: React.FC<HomeProps> = ({ loggedIn }) => {
   const navigate = useNavigate();
   const [recipientID, setRecipientID] = useState("");
+  const [selectedFriend, setSelectedFriend] = useState<Ifriend | null>(null);
+  const [isChatVisible, setIsChatVisible] = useState(false);
 
   const handleLoginRedirect = () => {
     navigate("/login");
   };
   return loggedIn ? (
-    <div className="flex w-screen h-screen flex-col bg-gray-50">
+    //home page have three componets navBar, chatNames and ChatFloor
+
+    //main div containg all components
+    <div className="flex h-screen w-screen flex-col-reverse sm:flex-row ">
+      {/* section one navbar  */}
       <Navbar />
-      <div className=" flex flex-1">
-        <Chatnames setRecipientID={setRecipientID} />
-        <Chatfloor recipientID={recipientID} />
+
+      {/*  section two Chatname */}
+      <div
+        className={`flex ${
+          isChatVisible ? "sm:block hidden" : "block"
+        } h-[calc(100vh-40px)] sm:h-screen`}
+      >
+        <Chatnames
+          setRecipientID={setRecipientID}
+          setSelectedFriend={setSelectedFriend}
+          setIsChatVisible={setIsChatVisible}
+        />
+      </div>
+
+      {/* section three chat floor */}
+      <div className={`flex-1 ${isChatVisible ? "flex" : "sm:flex hidden"}`}>
+        <Chatfloor
+          recipientID={recipientID}
+          selectedFriend={selectedFriend}
+          setIsChatVisible={setIsChatVisible}
+        />
       </div>
     </div>
   ) : (

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { error } from "console";
 
 const token = localStorage.getItem("authToken");
 const apiClient = axios.create({
@@ -18,5 +19,20 @@ apiClient.interceptors.request.use((config) => {
   }
   return config;
 });
+
+// interceptors for handling token expiry
+
+apiClient.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (
+      error.response.status == 401 &&
+      error.response.data.message == "Token expired"
+    ) {
+      alert("session expired");
+      window.location.href = "/login";
+    }
+  }
+);
 
 export default apiClient;
