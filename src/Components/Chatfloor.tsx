@@ -5,8 +5,9 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import Intro from "./Intro";
+const url = import.meta.env.VITE_APP_API_URL;
 
-const socket = io("http://localhost:3000");
+const socket = io(url);
 
 interface IrecipientID {
   recipientID: string;
