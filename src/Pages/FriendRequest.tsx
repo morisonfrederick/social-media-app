@@ -11,6 +11,8 @@ let user: userType;
 try {
   user = JSON.parse(userString);
 } catch (error) {
+  console.log(error);
+
   user = null;
 }
 

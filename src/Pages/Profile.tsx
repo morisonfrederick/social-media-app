@@ -9,9 +9,7 @@ const url = import.meta.env.VITE_APP_API_URL;
 
 function Profile() {
   const userState = useSelector((state: RootState) => state.auth.user);
-  const { fileInputRef, handleFileChange, logAction, imageURL } =
-    useProfilePicUpload();
-  logAction();
+  const { fileInputRef, handleFileChange, imageURL } = useProfilePicUpload();
 
   return (
     <div className="flex flex-col-reverse sm:flex-row h-screen w-screen">

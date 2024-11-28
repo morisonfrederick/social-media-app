@@ -1,10 +1,11 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../features/auth/authSlice";
+import apiClient from "../apiClient/apiClient";
 
 interface loginProps {
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,7 +35,7 @@ export const Login: React.FC<loginProps> = ({ setLoggedIn }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await apiClient.post("/login", {
         email,
         password,
       });
@@ -53,13 +54,16 @@ export const Login: React.FC<loginProps> = ({ setLoggedIn }) => {
         dispatch(setCredentials({ user, token }));
         navigate("/");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log("error block :", error);
-
-      if (error.response && error.response.data) {
-        // Display the error message from the response if available
-        toast.error(error.response.data || "Login failed. Please try again.");
-        setError(error.response.data || "Login failed. Please try again.");
+      if (error instanceof AxiosError) {
+        if (error.response && error.response.data) {
+          // Display the error message from the response if available
+          toast.error(error.response.data || "Login failed. Please try again.");
+          setError(error.response.data || "Login failed. Please try again.");
+        }
+      } else {
+        console.log("unknown error", error);
       }
     } finally {
       setLoading(false);

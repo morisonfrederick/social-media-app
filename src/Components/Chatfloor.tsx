@@ -49,7 +49,7 @@ const Chatfloor: React.FC<IrecipientID> = ({
     return () => {
       socket.off("private_message");
     };
-  }, [userState?.id]);
+  }, [userState, recipientID]);
 
   const sendMessage = () => {
     if (message.trim()) {

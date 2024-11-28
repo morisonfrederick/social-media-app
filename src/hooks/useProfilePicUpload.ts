@@ -7,22 +7,22 @@ const useProfilePicUpload = () => {
   const [imageURL, setImageURL] = useState("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const logAction = () => {
-    useEffect(() => {
-      const getProfilePic = async () => {
-        try {
-          const response = await apiClient.get("/profile");
-          if (response) {
-            console.log("response from image url : ", response);
+  useEffect(() => {
+    const getProfilePic = async () => {
+      try {
+        const response = await apiClient.get("/profile");
+        if (response) {
+          console.log("response from image url : ", response);
 
-            const url = response.data?.profileURL;
-            setImageURL(url);
-          }
-        } catch (error) {}
-      };
-      getProfilePic();
-    }, []);
-  };
+          const url = response.data?.profileURL;
+          setImageURL(url);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProfilePic();
+  }, []);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handel file change");
@@ -63,7 +63,7 @@ const useProfilePicUpload = () => {
     }
   };
 
-  return { loading, imageURL, fileInputRef, handleFileChange, logAction };
+  return { loading, imageURL, fileInputRef, handleFileChange };
 };
 
 export default useProfilePicUpload;

@@ -46,7 +46,7 @@ const Chatnames: React.FC<Props> = ({
       }
     };
     getFriendList();
-  }, []);
+  }, [friendlist]);
 
   return (
     <div className="sm:w-96 w-full ">

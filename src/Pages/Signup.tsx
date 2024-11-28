@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import apiClient from "../apiClient/apiClient";
 
 export const Signup = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ export const Signup = () => {
     setLoading(true);
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/signup", {
+      const response = await apiClient.post("/signup", {
         username,
         email,
         password,
@@ -33,11 +34,16 @@ export const Signup = () => {
       console.log(response.data);
       toast.success(response.data.message);
       setLoading(true);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log("signup failed", error);
-      toast.error(
-        error?.response?.data?.message || "Login failed. Please try again two."
-      );
+      if (error instanceof AxiosError) {
+        toast.error(
+          error?.response?.data?.message ||
+            "Login failed. Please try again two."
+        );
+      } else {
+        console.log("unknown error", error);
+      }
     }
   };
 

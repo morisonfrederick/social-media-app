@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import apiClient from "../apiClient/apiClient";
+import { AxiosError } from "axios";
 
 function Find() {
   interface User {
@@ -40,9 +41,14 @@ function Find() {
       const data = await response.data;
       toast.success(data?.message);
       console.log("the response is", data);
-    } catch (error: any) {
-      console.log("some error : ", error);
-      toast.error(error?.response?.data?.error);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        console.log("some error : ", error);
+        toast.error(error?.response?.data?.error);
+      } else {
+        console.log("some error : ", error);
+        toast.error("some unknown error");
+      }
     }
   };
 
@@ -71,7 +77,7 @@ function Find() {
           <div className="flex  w-full h-60 rounded-md mt-5 bg-gray-800 overflow-y-scroll">
             {users.length > 0 ? (
               <ul className="text-white p-4">
-                {users.map((user: any, index: number) => (
+                {users.map((user: User, index: number) => (
                   <li
                     key={index}
                     className="mb-5 flex justify-between items-center"
