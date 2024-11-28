@@ -24,7 +24,7 @@ const Home: React.FC<HomeProps> = ({ loggedIn }) => {
     //home page have three componets navBar, chatNames and ChatFloor
 
     //main div containg all components
-    <div className="flex h-screen w-screen flex-col-reverse sm:flex-row ">
+    <div className="flex sm:h-screen h-[100dvh] w-screen flex-col-reverse sm:flex-row ">
       {/* section one navbar  */}
       <Navbar />
 
