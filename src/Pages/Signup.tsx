@@ -82,7 +82,7 @@ export const Signup = () => {
           <div className="mb-4">
             <input
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-sky-500"
-              type="text"
+              type="password"
               name="password"
               placeholder="Enter password"
               onChange={inputHandler}
