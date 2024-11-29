@@ -28,7 +28,6 @@ apiClient.interceptors.response.use(
       error.response.status == 401 &&
       error.response.data.message == "Token expired"
     ) {
-      alert("session expired");
       window.location.href = "/login";
     }
   }
