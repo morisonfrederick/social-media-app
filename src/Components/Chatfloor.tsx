@@ -88,15 +88,22 @@ const Chatfloor: React.FC<IrecipientID> = ({
     <div className=" w-full">
       {recipientID !== "" ? (
         <div className="sm:h-screen h-[calc(100vh-40px)] flex flex-col   ">
-          <div className=" bg-slate-800">
+          <div className=" bg-slate-800 max-h-24 min-h-10 sm:hidden flex items-center p-1">
             <div
-              className="cursor-pointer sm:hidden "
+              className="cursor-pointer  "
               onClick={() => setIsChatVisible(false)}
             >
               <FontAwesomeIcon icon={faCircleChevronLeft} />
             </div>
-            <div>{selectedFriend?.name}</div>
           </div>
+          <div className="flex items-center space-x-4 bg-green-500">
+            <div className="h-10 w-10 rounded-full m-1 bg-gray-300"></div>
+            <div>
+              <p className="font-medium">{selectedFriend?.name}</p>
+              <p className="text-sm">Online</p>
+            </div>
+          </div>
+
           <div className="relative flex-1  ">
             <div className="absolute inset-0 bg-[url('assets/bg.jpg')] opacity-10 z-0"></div>
             <div className="z-40 opacity-100">

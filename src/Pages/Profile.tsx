@@ -14,8 +14,8 @@ function Profile() {
   return (
     <div className="flex flex-col-reverse sm:flex-row h-screen w-screen">
       <Navbar />
-      <div className="flex h-[calc(100vh-40px)] sm:h-screen w-full border-black">
-        <div className="w-full sm:w-[300px] relative">
+      <div className="flex h-[calc(100vh-40px)] sm:h-screen  min-w-96 border-black">
+        <div className="w-full  relative">
           <div className="bg-blue-800 h-[160px]"></div>
 
           <form>
