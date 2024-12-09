@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import Intro from "./Intro";
+import apiClient from "../apiClient/apiClient";
 const url = import.meta.env.VITE_APP_API_URL;
 
 const socket = io(url);
@@ -31,7 +32,47 @@ const Chatfloor: React.FC<IrecipientID> = ({
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Imessages[]>([]);
+  const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
 
+  useEffect(() => {
+    if (!socket) {
+      return;
+    }
+    socket.on("user_online", (userId) => {
+      setOnlineUsers((prev) => [...new Set([...prev, userId])]);
+    });
+    socket.on("user_offline", (userId) => {
+      setOnlineUsers((prev) => prev.filter((id) => id != userId));
+    });
+
+    return () => {
+      socket.off("user_online");
+      socket.off("user_offline");
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("fetching msg");
+    const senderID = userState?.id;
+    try {
+      async function fetchMsg() {
+        const response = await apiClient.post("/messages", {
+          data: {
+            senderID,
+            recipientID,
+          },
+        });
+        const data = await response.data;
+        const msg = await data?.message;
+        setMessages([...msg]);
+        console.log([...msg]);
+      }
+
+      fetchMsg();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [recipientID]);
   useEffect(() => {
     console.log("user state is", userState);
     console.log(
@@ -56,9 +97,9 @@ const Chatfloor: React.FC<IrecipientID> = ({
     if (message.trim()) {
       const newMessage = { message, senderID: userState?.id || "" };
       socket.emit("private_message", {
-        message,
-        recipientID,
         senderID: userState?.id,
+        recipientID,
+        message,
       });
 
       setMessages((prevMessages) => [...prevMessages, newMessage]);
@@ -100,7 +141,9 @@ const Chatfloor: React.FC<IrecipientID> = ({
             <div className="h-10 w-10 rounded-full m-1 bg-gray-300"></div>
             <div>
               <p className="font-medium">{selectedFriend?.name}</p>
-              <p className="text-sm">Online</p>
+              <p className="text-sm">
+                {onlineUsers.includes(recipientID) ? "Online" : "Offline"}
+              </p>
             </div>
           </div>
 

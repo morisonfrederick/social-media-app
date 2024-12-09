@@ -3,15 +3,15 @@ function Side() {
     <div className="h-screen w-full bg-slate-200 flex items-center justify-center ">
       <div className="">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">
-          Welcome to MyChat!
+          Welcome to Tiki!
         </h1>
         <p className="text-gray-600 mb-4">
-          MyChat is your ultimate space to connect, share, and stay in touch
-          with friends, family, and colleagues.
+          Tiki is your ultimate space to connect, share, and stay in touch with
+          friends, family, and colleagues.
         </p>
 
         <h2 className="text-xl font-semibold text-gray-700 mb-2">
-          Why Use MyChat?
+          Why Use Tiki?
         </h2>
         <ul className="list-disc list-inside text-gray-600 mb-4">
           <li>
