@@ -4,6 +4,7 @@ import { RootState } from "../app/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faUser } from "@fortawesome/free-solid-svg-icons";
 import useProfilePicUpload from "../hooks/useProfilePicUpload";
+import Side from "../Components/Side";
 
 const url = import.meta.env.VITE_APP_API_URL;
 
@@ -12,7 +13,7 @@ function Profile() {
   const { fileInputRef, handleFileChange, imageURL } = useProfilePicUpload();
 
   return (
-    <div className="flex flex-col-reverse sm:flex-row h-screen w-screen">
+    <div className="flex flex-col-reverse sm:flex-row h-[100dvh] w-screen">
       <Navbar />
       <div className="flex h-[calc(100vh-40px)] sm:h-screen  min-w-96 border-black">
         <div className="w-full  relative">
@@ -52,6 +53,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      <Side />
     </div>
   );
 }

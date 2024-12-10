@@ -52,7 +52,7 @@ export const Signup = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen p-4 ">
+    <div className="flex justify-center items-center h-[100dvh] p-4 ">
       <div className="sm:w-96 w-full p-6  rounded-lg shadow-md bg-slate-50">
         <h2 className="text-2xl font-bold text-center text-slate-500">
           Register Account

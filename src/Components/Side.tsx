@@ -1,6 +1,6 @@
 function Side() {
   return (
-    <div className="h-screen w-full bg-slate-200 flex items-center justify-center ">
+    <div className="h-screen sm:flex hidden w-full bg-slate-200 flex-1 items-center justify-center ">
       <div className="">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">
           Welcome to Tiki!

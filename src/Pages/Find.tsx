@@ -54,7 +54,7 @@ function Find() {
   };
 
   return (
-    <div className="flex sm:flex-row sm:min-w-10  flex-col-reverse bg-white min-h-screen  items-center">
+    <div className="flex sm:flex-row sm:min-w-10  flex-col-reverse bg-white h-[100dvh]  items-center">
       <Navbar />
       <div className="sm:h-screen h-[calc(100vh-40px)] sm:w-96 w-screen  overflow-y-auto ">
         <h2 className=" text-xl font-semibold mb-6 text-center p-4">
@@ -99,9 +99,7 @@ function Find() {
           )}
         </div>
       </div>
-      <div className=" flex-1 sm:block hidden">
-        <Side />
-      </div>
+      <Side />
     </div>
   );
 }

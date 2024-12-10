@@ -75,7 +75,7 @@ export const Login: React.FC<loginProps> = ({ setLoggedIn }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen p-4 ">
+    <div className="flex justify-center items-center h-[100dvh] p-4 ">
       <div className="sm:w-96 w-full p-6  rounded-2xl shadow-md bg-slate-50">
         <h2 className="text-3xl font-bold text-slate-500 text-center ">
           Welcome Back !

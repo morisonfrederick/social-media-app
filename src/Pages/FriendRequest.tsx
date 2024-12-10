@@ -68,7 +68,7 @@ function FriendRequest() {
   };
 
   return (
-    <div className="flex sm:flex-row flex-col-reverse h-screen justify-center items-center bg-gray-100">
+    <div className="flex sm:flex-row flex-col-reverse h-[100dvh] justify-center items-center bg-gray-100">
       <Navbar />
       <div className=" h-full sm:max-w-96 w-screen">
         <div className="flex-grow bg-white  w-full sm:min-w-96 sm:h-[100vh-40px] h-full  p-6">
