@@ -13,7 +13,7 @@ function Profile() {
   const { fileInputRef, handleFileChange, imageURL } = useProfilePicUpload();
 
   return (
-    <div className="flex flex-col-reverse sm:flex-row h-screen w-screen">
+    <div className="flex flex-col-reverse sm:flex-row h-[100dvh] w-screen">
       <Navbar />
       <div className="flex-1 sm:max-w-96 w-screen">
         <div className="w-full  relative">
