@@ -3,12 +3,10 @@ import Chatfloor from "../Components/Chatfloor";
 import Chatnames from "../Components/Chatnames";
 import Navbar from "../Components/Navbar";
 import { useNavigate } from "react-router-dom";
+import { Ifriend } from "../interfaces/interfaces";
 
 interface HomeProps {
   loggedIn: boolean;
-}
-interface Ifriend {
-  name: string;
 }
 
 const Home: React.FC<HomeProps> = ({ loggedIn }) => {

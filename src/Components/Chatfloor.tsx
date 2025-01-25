@@ -6,15 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import Intro from "./Intro";
 import apiClient from "../apiClient/apiClient";
+import { Ifriend } from "../interfaces/interfaces";
 const url = import.meta.env.VITE_APP_API_URL;
 
 const socket = io(url);
 
 interface IrecipientID {
   recipientID: string;
-  selectedFriend: {
-    name: string;
-  } | null;
+  selectedFriend: Ifriend | null;
   setIsChatVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -138,7 +137,13 @@ const Chatfloor: React.FC<IrecipientID> = ({
             </div>
           </div>
           <div className="flex items-center space-x-4 bg-green-500">
-            <div className="h-10 w-10 rounded-full m-1 bg-gray-300"></div>
+            <div className="h-10 w-10 rounded-full m-1 bg-gray-300">
+              <img
+                className="h-10 w-10 rounded-full"
+                src={`${url}/uploads/${selectedFriend?.imageURL}`}
+                alt="profile pic"
+              />
+            </div>
             <div>
               <p className="font-medium">{selectedFriend?.name}</p>
               <p className="text-sm">

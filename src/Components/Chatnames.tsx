@@ -1,14 +1,11 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Ifriend } from "../interfaces/interfaces";
 
 import apiClient from "../apiClient/apiClient";
 
 const url = import.meta.env.VITE_APP_API_URL;
-
-interface Ifriend {
-  name: string;
-}
 
 interface Props {
   setRecipientID: Dispatch<SetStateAction<string>>;
@@ -66,7 +63,7 @@ const Chatnames: React.FC<Props> = ({
               key={index}
               onClick={() => {
                 setRecipientID(friend.id);
-                setSelectedFriend({ name: friend.name });
+                setSelectedFriend({ name: friend.name, imageURL: friend.url });
                 setIsChatVisible(true);
               }}
               className="p-4 flex gap-2 items-center "
