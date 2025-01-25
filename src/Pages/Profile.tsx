@@ -17,7 +17,7 @@ function Profile() {
       <Navbar />
       <div className="flex-1 sm:max-w-96 w-screen">
         <div className="w-full  relative">
-          <div className="bg-blue-800 h-[160px]"></div>
+          <div className="bg-slate-600 h-[160px]"></div>
 
           <form>
             <div
