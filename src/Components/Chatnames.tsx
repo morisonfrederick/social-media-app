@@ -73,7 +73,7 @@ const Chatnames: React.FC<Props> = ({
                 src={
                   friend.url
                     ? `${url}/uploads/${friend.url}`
-                    : "src/assets/profile.png"
+                    : `${url}/src/assets/profile.png`
                 }
                 alt=""
               />
